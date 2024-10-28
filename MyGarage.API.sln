@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{35C57B96-FA29-414C-883B-E4DD6416B97B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGarage.API", "MyGarage.API\MyGarage.API.csproj", "{C5F46C1A-B71A-4F7B-A7FE-FED85EDE45D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{35C57B96-FA29-414C-883B-E4DD6416B97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35C57B96-FA29-414C-883B-E4DD6416B97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35C57B96-FA29-414C-883B-E4DD6416B97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F46C1A-B71A-4F7B-A7FE-FED85EDE45D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F46C1A-B71A-4F7B-A7FE-FED85EDE45D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F46C1A-B71A-4F7B-A7FE-FED85EDE45D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F46C1A-B71A-4F7B-A7FE-FED85EDE45D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
