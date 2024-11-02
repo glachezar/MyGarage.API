@@ -2,6 +2,7 @@
 namespace MyGarage.API
 {
     using Infrastructure.Data;
+    using System.Reflection;
 
     public class Program
     {
@@ -11,6 +12,7 @@ namespace MyGarage.API
 
             // Add services to the container.
             builder.Services.AddSingleton<MongoDbService>();
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
