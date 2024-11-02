@@ -2,8 +2,9 @@
 
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using Application.Interfaces;
 
-public class MongoDbService
+public class MongoDbService : IMongoDbService
 {
     private readonly IConfiguration _configuration;
     private readonly IMongoDatabase? _database;
