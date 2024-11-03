@@ -5,8 +5,6 @@ namespace MyGarage.API
     using Application.Queries.Vehicles;
     using Infrastructure.Data;
     using Infrastructure.Repositories;
-    using Microsoft.OpenApi.Models;
-    using System.Reflection;
 
     public class Program
     {
@@ -16,7 +14,7 @@ namespace MyGarage.API
 
             // Add services to the container.
             builder.Services.AddSingleton<MongoDbService>();
-            builder.Services.AddSingleton(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddSingleton(typeof(IVehicleRepository), typeof(VehicleRepository));
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllVehiclesQuery).Assembly));
 
             builder.Services.AddControllers();
@@ -24,11 +22,12 @@ namespace MyGarage.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v1", new()
                 {
                     Title = "MyGarage.API",
                     Version = "v1"
                 });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
 
             var app = builder.Build();
@@ -37,7 +36,10 @@ namespace MyGarage.API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyGarage.API v1");
+                });
             }
 
             app.UseHttpsRedirection();

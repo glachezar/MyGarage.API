@@ -8,9 +8,9 @@ public record GetAllVehiclesQuery() : IRequest<IEnumerable<Vehicle>>;
 
 internal class GetAllVehiclesQueryHandler : IRequestHandler<GetAllVehiclesQuery, IEnumerable<Vehicle>>
 {
-    readonly IRepository<Vehicle> _vehicleRepository;
+    readonly IVehicleRepository _vehicleRepository;
 
-    public GetAllVehiclesQueryHandler(IRepository<Vehicle> vehicleRepository)
+    public GetAllVehiclesQueryHandler(IVehicleRepository vehicleRepository)
     {
         _vehicleRepository = vehicleRepository;
     }
