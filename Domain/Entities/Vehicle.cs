@@ -16,4 +16,7 @@ public class Vehicle : BaseEntity
 
     [BsonElement("licensePlate"), BsonRepresentation(BsonType.String)]
     public string? LicensePlate { get; set; }
+
+    [BsonElement("isDeleted"), BsonRepresentation(BsonType.Boolean)]
+    public bool IsDeleted { get; set; }
 }
