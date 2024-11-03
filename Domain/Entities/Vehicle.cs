@@ -3,12 +3,8 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-public class Vehicle
+public class Vehicle : BaseEntity
 {
-    [BsonId]
-    [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-    public required string Id { get; set; }
-
     [BsonElement("make"), BsonRepresentation(BsonType.String)]
     public required string Make { get; set; }
 
