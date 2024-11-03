@@ -22,10 +22,8 @@ public class VehicleRepository : IVehicleRepository
         throw new NotImplementedException();
     }
 
-    public Task<Vehicle?> GetByIdAsync(string id, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<Vehicle?> GetByIdAsync(string id, CancellationToken cancellationToken) =>
+        await _entity.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
 
     public Task AddAsync(Vehicle entity, CancellationToken cancellationToken)
     {
