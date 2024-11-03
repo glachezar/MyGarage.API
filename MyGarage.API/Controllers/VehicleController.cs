@@ -2,7 +2,8 @@
 {
     using Domain.Entities;
     using Infrastructure.Data;
-    using Microsoft.AspNetCore.Http;
+    using Application.Queries.Vehicles;
+    using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using MongoDB.Driver;
 
@@ -11,15 +12,23 @@
     public class VehicleController : ControllerBase
     {
         private readonly IMongoCollection<Vehicle>? _vehicles;
-        public VehicleController(MongoDbService mongoDbService)
+        readonly IMediator _mediator;
+        public VehicleController(MongoDbService mongoDbService, IMediator mediator)
         {
             _vehicles = mongoDbService.Database?.GetCollection<Vehicle>("vehicle");
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IEnumerable<Vehicle>> Get()
         {
             return await _vehicles.Find(FilterDefinition<Vehicle>.Empty).ToListAsync();
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<Vehicle>> GetAll()
+        {
+            return await _mediator.Send(new GetAllVehiclesQuery());
         }
     }
 }

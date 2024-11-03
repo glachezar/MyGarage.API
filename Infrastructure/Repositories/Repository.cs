@@ -1,13 +1,21 @@
 ﻿namespace Infrastructure.Repositories;
 
 using Application.Interfaces;
+using Domain.Entities;
+using Infrastructure.Data;
+using MongoDB.Driver;
 
 public class Repository<T> : IRepository<T>
+    where T : BaseEntity
 {
-    public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken)
+    private readonly IMongoCollection<T>? _entity;
+    public Repository(MongoDbService context)
     {
-        throw new NotImplementedException();
+        _entity = context.Database?.GetCollection<T>(typeof(T).Name);
     }
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken) =>
+        await _entity.Database.GetCollection<T>(typeof(T).Name)
+        .Find(FilterDefinition<T>.Empty).ToListAsync(cancellationToken);
 
     public Task<IEnumerable<T>> GetAllWithPredicateAsync(Func<T, bool> predicate, CancellationToken cancellationToken)
     {
